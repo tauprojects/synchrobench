@@ -21,4 +21,6 @@ public class Parameters {
     public static boolean detailedStats = true;
 
     public static String benchClassName = new String("skiplists.lockfree.NonBlockingFriendlySkipListMap");
+
+	public static boolean gc = false;
 }

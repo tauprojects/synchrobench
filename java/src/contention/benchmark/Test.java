@@ -200,6 +200,8 @@ public class Test {
 			throws InterruptedException {
 		long startTime;
 		fill(Parameters.range, Parameters.size);
+		if(Parameters.gc)
+			GC.runSystemGC();
 		Thread.sleep(5000);
 		startTime = System.currentTimeMillis();
 		for (Thread thread : threads)
@@ -265,6 +267,10 @@ public class Test {
 			test.resetStats();
 		}
 
+		
+		if(Parameters.gc)
+			GC.runSystemGC();
+		
 		// running the bench
 		for (int i = 0; i < Parameters.iterations; i++) {
 			if (!firstIteration) {
@@ -362,6 +368,8 @@ public class Test {
 					else if (currentArg.equals("--iterations")
 							|| currentArg.equals("-n"))
 						Parameters.iterations = Integer.parseInt(optionValue);
+					else if (currentArg.equals("-gc"))
+						Parameters.gc = true;
 				}
 			} catch (IndexOutOfBoundsException e) {
 				System.err.println("Missing value after option: " + currentArg
