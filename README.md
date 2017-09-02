@@ -83,7 +83,29 @@ Parameters
  - n, the number of iterations as part of the same JVM instance.
  - b, the benchmark to use.
  - x, the alternative synchronization technique for the same algorithm. In the case of transactional data structures, this rep- resents the transactional model used (relaxed or strong) while it represents the type of locks used in the context of lock-based data structures (optimistic or pessimistic). 
+ - gc, Should JMH force GC between executions? Forcing the GC may help to lower the noise in GC-heavy benchmarks.
+
 
 Install
 -------
-To install Synchrobench, take a look at the INSTALL files of each version of Synchrobench in the java and c-cpp directories.
+## Java version
+##### Compiling
+To compile the Java version of Synchrobench, go to the directory
+`synchrobench/java`
+modify the path to your rt.jar in the Makefile and type:
+    `make`
+This will create a bin directory with a series of classes
+whose names correspond to {DATASTRUCTURES}.{SYNC}.{ALGO} as in:
+` skiplists.lockfree.NonBlockingFriendlySkipListMap`
+The Java version requires Apache ant and most data structures require with Java 1.7, however, the versioned list uses the StampedLock from Java 1.8. Either upgrade to Java 1.8 or delete the corresponding files:
+`VersionedListSetStampLock.java and`
+`NodeStampLock.java in src/linkedlists/lockbased/`
+
+###### Benchmarking
+Classes for queues, hash tables, linked lists, trees, skip lists
+are located in 'bin'. You must run the benchmark located in
+bin/contention/benchmark/Test and pass it the benchmark class name
+as a parameter with '-b':
+`java -cp bin contention.benchmark.Test -b skiplists.lockfree.NonBlockingFriendlySkipListMap`
+Use parameter "--help" for the full list of parameters:
+`java -cp bin contention.benchmark.Test --help`
