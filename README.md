@@ -11,7 +11,7 @@ performance gain on multi-(/many-)core machines.
 If you use Synchrobench, please cite the companion paper: 
 V. Gramoli. More than You Ever Wanted to Know about Synchronization. PPoPP 2015. More information at https://sites.google.com/site/synchrobench/.
 
-###### NOTE: This is a forked repository, modified with a garbage collection additional argument, for personal academic purpose only.
+##### NOTE: This is a forked repository, modified with a garbage collection additional argument, for personal academic purpose only.
 
 Data structures
 ---------------
